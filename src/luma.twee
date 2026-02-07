@@ -1,0 +1,89 @@
+:: StoryTitle
+Luma
+
+
+:: StoryData
+{
+  "ifid": "225945C0-6417-4B11-80C5-F006B9DC501E",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Entrada do Polo",
+  "tag-colors": {
+    "header": "blue"
+  },
+  "zoom": 1
+}
+
+
+:: Entrada do Polo {"position":"800,375","size":"100,100"}
+Luma se esconde atrás de uma pilha de sucata tecnológica. O ar em Âmbar é denso e cheira a ozônio. À frente, um terminal de segurança bloqueia o acesso ao núcleo.
+
+Como você deseja prosseguir?
+
+* [[Tentar um "overload" no sistema]] (Requer conhecimento técnico)
+* [[Usar a força bruta para abrir o painel]]
+* [[Procurar por um cartão de acesso nos arredores]]
+
+(set: $ferimento to false)
+
+
+:: Entrar no complexo sob as sombras {"position":"800,625","size":"100,100"}
+
+
+
+:: Entrar nos dutos de ventilação {"position":"675,625","size":"100,100"}
+
+
+
+:: Header [header] {"position":"975,375","size":"100,100"}
+
+
+---
+
+**STATUS DA LUMA**
+Energia: [||||||||||] 100%
+Estado: (if: $ferimento is true)[<span style="color:red">FERIDA (Mancando)</span>](else:)[<span style="color:green">SAUDÁVEL</span>]
+
+---
+
+
+
+
+:: Procurar por um cartão de acesso nos arredores {"position":"925,500","size":"100,100"}
+Luma vasculha o corpo de um drone desativado e encontra um cartão de identificação nível 1. Isso pode ser útil.
+
+(set: $possuiCartao to true)
+
+[[Voltar para o terminal->Entrada do Polo]]
+
+
+:: Tentar um "overload" no sistema {"position":"675,500","size":"100,100"}
+Luma conecta seu deck portátil ao terminal. O código flui pela tela, lembrando as antigas linguagens do século XXI.
+
+(if: $possuiCartao is true)[
+    O terminal reconhece a assinatura do cartão que você encontrou! O overload é facilitado pelo acesso administrativo. 
+    
+    A porta se abre silenciosamente. **Sucesso furtivo.**
+]
+(else:)[
+    Sem uma credencial válida, o sistema detecta a intrusão. Um alarme ecoa por todo o setor de Âmbar!
+    
+    (set: $alerta to true)
+    A porta trava, mas uma entrada de ventilação se abre. Você precisa ser rápida.
+    
+    [[Entrar nos dutos de ventilação]]
+]
+
+
+:: Usar a força bruta para abrir o painel {"position":"800,500","size":"100,100"}
+Luma chuta o painel com toda a força. O metal range e a trava cede, mas o impacto foi seco demais contra o aço.
+
+(if: $ferimento is false)[
+   
+    (set: $ferimento to true)
+    
+    Um estalo doloroso ecoa no seu tornozelo. Luma conseguiu abrir a porta, mas a que custo? Agora ela está mancando.
+]
+
+
+[[Entrar no complexo sob as sombras]]
